@@ -1,9 +1,5 @@
 ---
 engines:
-  brakeman:
-    enabled: true
-  bundler-audit:
-    enabled: true
   duplication:
     enabled: true
     config:
@@ -17,4 +13,3 @@ engines:
 ratings:
    paths:
    - "**.rb"
-   - Gemfile.lock
