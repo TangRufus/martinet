@@ -11,3 +11,5 @@
 # rvm
 .ruby-gemset
 .ruby-version
+
+*.gemfile.lock
