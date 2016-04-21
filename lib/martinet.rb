@@ -1,7 +1,7 @@
 require 'martinet/version'
+require 'martinet/session'
 
 module Martinet
-  # Your code goes here...
 end
 
-require 'martinet/session'
+require 'martinet/railtie' if defined?(Rails)

@@ -1,10 +1,10 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'codeclimate-test-reporter'
 require 'martinet'
 require 'minitest/autorun'
-require 'coveralls'
 require 'warden'
 
-Coveralls.wear!
+CodeClimate::TestReporter.start
 
 module MiniTest
   class Spec
