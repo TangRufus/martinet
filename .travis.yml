@@ -12,7 +12,6 @@ before_install:
   - gem cleanup bundler
 
 gemfile:
-  - gemfiles/activerecord_4_0.gemfile
   - gemfiles/activerecord_4_1.gemfile
   - gemfiles/activerecord_4_2.gemfile
   - gemfiles/activerecord_5_0.gemfile
