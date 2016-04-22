@@ -1,7 +1,7 @@
 PATH
   remote: ../
   specs:
-    martinet (0.0.1)
+    martinet (0.0.2)
       warden (~> 1.2, >= 1.2.6)
 
 GEM
