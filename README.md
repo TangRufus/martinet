@@ -12,22 +12,11 @@
 
 
 
-
-TODO: Add badges because they're cool
-
-TODO: Add martinet class
-
-TODO: Add tests
-
-TODO: Test CI servers
-
-TODO: Publish 0.1.0
-
 TODO: Add impersonate functions
 
 TODO: Add tests
 
-TODO: Publish 0.2.0
+TODO: Publish 0.3.0
 
 TODO: Write usage instructions
 
