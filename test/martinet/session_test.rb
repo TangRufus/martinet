@@ -89,16 +89,24 @@ module Martinet
       assert_signed_out(scope: :admin)
     end
 
-    private
+    describe Impersonation do
+      it 'included in Martinet::Session when impersonation enabled' do
+        # TODO: Test if Martinet::Impersonation is inclued
+        Martinet.configure do |config|
+          config.enable_impersonation = true
+        end
 
-    def assert_signed_in(user:, scope: nil)
-      subject.current_user(scope: scope).must_equal user
-      subject.signed_in?(scope: scope).must_equal true
-    end
+        subject.respond_to?(:impersonate!).must_equal true
+      end
 
-    def assert_signed_out(scope: nil)
-      subject.current_user(scope: scope).must_be_nil
-      subject.signed_in?(scope: scope).must_equal false
+      it 'does not included in Martinet::Session when impersonation disabled' do
+        # TODO: Test if Martinet::Impersonation is not inclued
+        Martinet.configure do |config|
+          config.enable_impersonation = false
+        end
+
+        subject.respond_to?(:impersonate!).must_equal false
+      end
     end
   end
 end

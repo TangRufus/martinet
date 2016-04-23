@@ -2,6 +2,11 @@ module Martinet
   # HTTP/Warden session-specific behavior.
   class Session
     def initialize(warden)
+      # TODO: Move this to Martinet::Impersonation class
+      if Martinet.configuration.enable_impersonation
+        class << self; include Impersonation; end
+      end
+
       @warden = warden
     end
 

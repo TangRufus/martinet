@@ -1,11 +1,6 @@
 require 'test_helper'
 
 describe Martinet::Configuration do
-  after do
-    Martinet.configuration = nil
-    Martinet.configure {}
-  end
-
   describe '#enable_impersonation' do
     subject { Martinet.configuration.enable_impersonation }
 
