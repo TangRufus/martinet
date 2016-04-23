@@ -11,20 +11,6 @@ before_install:
   - gem update bundler
   - gem cleanup bundler
 
-gemfile:
-  - gemfiles/activerecord_4_1.gemfile
-  - gemfiles/activerecord_4_2.gemfile
-  - gemfiles/activerecord_5_0.gemfile
-  - gemfiles/activerecord_head.gemfile
-
-matrix:
-  fast_finish: true
-  exclude:
-    - gemfile: gemfiles/activerecord_head.gemfile
-      rvm: 2.1.10
-    - gemfile: gemfiles/activerecord_5_0.gemfile
-      rvm: 2.1.10
-
 branches:
   only:
     - master

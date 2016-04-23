@@ -5,5 +5,3 @@ require 'martinet/impersonation'
 
 module Martinet
 end
-
-require 'martinet/railtie' if defined?(Rails)
