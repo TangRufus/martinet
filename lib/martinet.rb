@@ -1,4 +1,5 @@
 require 'martinet/version'
+require 'martinet/configuration'
 require 'martinet/session'
 
 module Martinet
