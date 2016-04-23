@@ -38,7 +38,7 @@ module Martinet
       assert_signed_out(scope: :admin)
     end
 
-    it 'sign in different objects in different scopes' do
+    it 'signs in different objects in different scopes' do
       subject.sign_in!(Object)
       subject.sign_in!('I am an admin', scope: :admin)
 
@@ -46,7 +46,7 @@ module Martinet
       assert_signed_in(user: 'I am an admin', scope: :admin)
     end
 
-    it 'sign out object in one scope' do
+    it 'signs out object in one scope' do
       subject.sign_in!(Object)
       subject.sign_in!('I am an admin', scope: :admin)
 
@@ -56,7 +56,7 @@ module Martinet
       assert_signed_out(scope: :admin)
     end
 
-    it 'sign out object in default scope' do
+    it 'signs out object in default scope' do
       subject.sign_in!(Object)
       subject.sign_in!('I am an admin', scope: :admin)
 
@@ -66,7 +66,7 @@ module Martinet
       assert_signed_in(user: 'I am an admin', scope: :admin)
     end
 
-    it 'sign out all objects in all scopes' do
+    it 'signs out all objects in all scopes' do
       subject.sign_in!(Object)
       subject.sign_in!('I am an admin', scope: :admin)
 
