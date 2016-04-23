@@ -4,62 +4,66 @@ require 'martinet/active_record_serializer'
 
 module Martinet
   class ActiveRecordSerializerTest < MiniTest::Spec
-    describe 'Martinet::ActiveRecordSerializer' do
-      let(:richard) { User.create!(name: 'Richard Roe') }
-      let(:john) { User.create!(name: 'John Doe') }
-      let(:mark) { User.create!(name: 'Mark Moe') }
-      let(:unborn) { User.new(name: 'Unborn Baby') }
-      let(:not_an_active_record) { Hash[id: 666, name: 'I am a hash'] }
+    before do
+      @richard = User.create!(name: 'Richard Roe')
+      @john = User.create!(name: 'John Doe')
+      @mark = User.create!(name: 'Mark Moe')
+      @unborn = User.new(name: 'Unborn Baby')
+      @not_an_active_record = Hash[id: 666, name: 'I am a hash']
+    end
 
-      describe 'serialize' do
-        it 'serializes model to hash' do
-          result = ActiveRecordSerializer.serialize(record: john)
+    after do
+      User.delete_all
+    end
 
-          result.must_be_instance_of Hash
-          result[:klass].must_equal 'User'
-          result[:record_id].must_equal john.id
-        end
+    describe 'serialize' do
+      it 'serializes model to hash' do
+        result = ActiveRecordSerializer.serialize(record: @john)
 
-        it 'passes through original object if record not persisted' do
-          result = ActiveRecordSerializer.serialize(record: unborn)
-
-          result.must_equal unborn
-        end
-
-        it 'passes through non ActiveRecord objects' do
-          result = ActiveRecordSerializer.serialize(record: not_an_active_record)
-
-          result.must_equal not_an_active_record
-        end
+        result.must_be_instance_of Hash
+        result[:klass].must_equal 'User'
+        result[:record_id].must_equal @john.id
       end
 
-      describe '#deserialize' do
-        it 'deserializes model from hash' do
-          result = ActiveRecordSerializer.deserialize(object_hash: { klass: 'User', record_id: john.id })
+      it 'passes through original object if record not persisted' do
+        result = ActiveRecordSerializer.serialize(record: @unborn)
 
-          result.must_equal john
-        end
+        result.must_equal @unborn
+      end
 
-        it 'returns original object if record not found' do
-          object_hash = { klass: 'User', record_id: mark.id }
-          mark.destroy!
+      it 'passes through non ActiveRecord objects' do
+        result = ActiveRecordSerializer.serialize(record: @not_an_active_record)
 
-          result = ActiveRecordSerializer.deserialize(object_hash: object_hash)
+        result.must_equal @not_an_active_record
+      end
+    end
 
-          result.must_equal object_hash
-        end
+    describe '#deserialize' do
+      it 'deserializes model from hash' do
+        result = ActiveRecordSerializer.deserialize(object_hash: { klass: 'User', record_id: @john.id })
 
-        it 'passes through non ActiveRecord objects' do
-          result = ActiveRecordSerializer.deserialize(object_hash: not_an_active_record)
+        result.must_equal @john
+      end
 
-          result.must_equal not_an_active_record
-        end
+      it 'returns original object if record not found' do
+        object_hash = { klass: 'User', record_id: @mark.id }
+        @mark.destroy!
 
-        it 'passes through objects without klass and id' do
-          result = ActiveRecordSerializer.deserialize(object_hash: 'I am a string')
+        result = ActiveRecordSerializer.deserialize(object_hash: object_hash)
 
-          result.must_equal 'I am a string'
-        end
+        result.must_equal object_hash
+      end
+
+      it 'passes through non ActiveRecord objects' do
+        result = ActiveRecordSerializer.deserialize(object_hash: @not_an_active_record)
+
+        result.must_equal @not_an_active_record
+      end
+
+      it 'passes through objects without klass and id' do
+        result = ActiveRecordSerializer.deserialize(object_hash: 'I am a string')
+
+        result.must_equal 'I am a string'
       end
     end
   end
