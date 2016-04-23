@@ -2,26 +2,28 @@ require 'test_helper'
 
 module Martinet
   class SessionTest < MiniTest::Spec
-    it 'signs object in' do
+    it 'nobody sign in before sign_in! is called' do
       session = Session.new(warden)
 
       session.current_user.must_equal nil
-      assert !session.signed_in?
+      session.signed_in?.must_equal false
+    end
 
+    it 'signs object in' do
+      session = Session.new(warden)
       session.sign_in!(Object)
 
       session.current_user.must_equal Object
-      assert session.signed_in?
+      session.signed_in?.must_equal true
     end
 
     it 'signs object out' do
       session = Session.new(warden)
       session.sign_in!(Object)
-
       session.sign_out!
 
       session.current_user.must_equal nil
-      assert !session.signed_in?
+      session.signed_in?.must_equal false
     end
 
     it 'signs object in with scope' do
@@ -72,20 +74,20 @@ module Martinet
 
       session.sign_out!
 
-      assert_signed_out(session: session, scope: :admin)
       assert_signed_out(session: session)
+      assert_signed_out(session: session, scope: :admin)
     end
 
     private
 
     def assert_signed_in(session:, user:, scope: nil)
       session.current_user(scope: scope).must_equal user
-      assert session.signed_in?(scope: scope)
+      session.signed_in?(scope: scope).must_equal true
     end
 
     def assert_signed_out(session:, scope: nil)
-      session.current_user(scope: scope).must_equal nil
-      assert !session.signed_in?(scope: scope)
+      session.current_user(scope: scope).must_be_nil
+      session.signed_in?(scope: scope).must_equal false
     end
   end
 end
