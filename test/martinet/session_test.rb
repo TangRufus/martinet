@@ -10,14 +10,14 @@ module Martinet
       assert_signed_out(scope: :admin)
     end
 
-    it 'signs object in' do
+    it 'signs in' do
       subject.sign_in!(Object)
 
       subject.current_user.must_equal Object
       subject.signed_in?.must_equal true
     end
 
-    it 'signs object out' do
+    it 'signs out' do
       subject.sign_in!(Object)
       subject.sign_out!
 
@@ -25,20 +25,33 @@ module Martinet
       subject.signed_in?.must_equal false
     end
 
-    it 'signs object in with scope' do
+    it 'signs in with scope' do
       subject.sign_in!(Object, scope: :admin)
 
       assert_signed_in(user: Object, scope: :admin)
     end
 
-    it 'signs object out with scope' do
+    it 'signs in with :default scope behaves like no scope' do
+      subject.sign_in!(Object, scope: :default)
+
+      assert_signed_in(user: Object)
+    end
+
+    it 'signs out with :default scope behaves like no scope' do
+      subject.sign_in!(Object, scope: :default)
+      subject.sign_out!(scope: :default)
+
+      assert_signed_out
+    end
+
+    it 'signs out with scope' do
       subject.sign_in!(Object, scope: :admin)
       subject.sign_out!(scope: :admin)
 
       assert_signed_out(scope: :admin)
     end
 
-    it 'sign in different objects in different scopes' do
+    it 'signs in different objects in different scopes' do
       subject.sign_in!(Object)
       subject.sign_in!('I am an admin', scope: :admin)
 
@@ -46,7 +59,7 @@ module Martinet
       assert_signed_in(user: 'I am an admin', scope: :admin)
     end
 
-    it 'sign out object in one scope' do
+    it 'signs out with one scope' do
       subject.sign_in!(Object)
       subject.sign_in!('I am an admin', scope: :admin)
 
@@ -56,7 +69,7 @@ module Martinet
       assert_signed_out(scope: :admin)
     end
 
-    it 'sign out object in default scope' do
+    it 'signs out with default scope' do
       subject.sign_in!(Object)
       subject.sign_in!('I am an admin', scope: :admin)
 
@@ -66,7 +79,7 @@ module Martinet
       assert_signed_in(user: 'I am an admin', scope: :admin)
     end
 
-    it 'sign out all objects in all scopes' do
+    it 'signs out all objects in all scopes' do
       subject.sign_in!(Object)
       subject.sign_in!('I am an admin', scope: :admin)
 
@@ -76,16 +89,24 @@ module Martinet
       assert_signed_out(scope: :admin)
     end
 
-    private
+    describe Impersonation do
+      it 'included in Martinet::Session when impersonation enabled' do
+        # TODO: Test if Martinet::Impersonation is inclued
+        Martinet.configure do |config|
+          config.enable_impersonation = true
+        end
 
-    def assert_signed_in(user:, scope: nil)
-      subject.current_user(scope: scope).must_equal user
-      subject.signed_in?(scope: scope).must_equal true
-    end
+        subject.respond_to?(:impersonate!).must_equal true
+      end
 
-    def assert_signed_out(scope: nil)
-      subject.current_user(scope: scope).must_be_nil
-      subject.signed_in?(scope: scope).must_equal false
+      it 'does not included in Martinet::Session when impersonation disabled' do
+        # TODO: Test if Martinet::Impersonation is not inclued
+        Martinet.configure do |config|
+          config.enable_impersonation = false
+        end
+
+        subject.respond_to?(:impersonate!).must_equal false
+      end
     end
   end
 end

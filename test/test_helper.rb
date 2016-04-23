@@ -12,6 +12,21 @@ module MiniTest
 
     after do
       Warden.test_reset!
+
+      Martinet.configuration = nil
+      Martinet.configure {}
+    end
+
+    protected
+
+    def assert_signed_in(user:, scope: nil)
+      subject.current_user(scope: scope).must_equal user
+      subject.signed_in?(scope: scope).must_equal true
+    end
+
+    def assert_signed_out(scope: nil)
+      subject.current_user(scope: scope).must_be_nil
+      subject.signed_in?(scope: scope).must_equal false
     end
   end
 end
