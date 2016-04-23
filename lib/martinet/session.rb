@@ -10,7 +10,7 @@ module Martinet
     end
 
     def signed_in?(scope: nil)
-      @warden.user(scope)
+      @warden.authenticated?(scope)
     end
 
     def sign_in!(user, *args)
