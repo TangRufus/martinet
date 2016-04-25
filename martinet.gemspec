@@ -1,28 +1,30 @@
-$LOAD_PATH.push File.expand_path("../lib", __FILE__)
-require "martinet/identity"
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'martinet/version'
 
 Gem::Specification.new do |spec|
-  spec.name = martinet::Identity.name
-  spec.version = martinet::Identity.version
+  spec.name = 'martinet'
+  spec.version = Martinet::VERSION
   spec.platform = Gem::Platform::RUBY
-  spec.authors = ["Tang Rufus"]
-  spec.email = ["tangrufus@gmail.com"]
-  spec.homepage = ""
-  spec.summary = "TODO: Add gem summary here."
-  spec.description = "TODO: Add gem description here."
-  spec.license = "MIT"
+  spec.authors = ['Tang Rufus']
+  spec.email = ['tangrufus@gmail.com']
+  spec.homepage = 'https://github.com/TangRufus/martinet'
+  spec.summary = 'Authorization component for warden'
+  spec.description = 'Authorization component for warden'
+  spec.license = 'MIT'
 
-  if ENV["RUBY_GEM_SECURITY"] == "enabled"
-    spec.signing_key = File.expand_path("~/.ssh/gem-private_key.pem")
-    spec.cert_chain = [File.expand_path("~/.ssh/gem-public_cert.pem")]
-  end
+  spec.metadata['allowed_push_host'] = 'https://rubygems.org'
 
-  spec.add_development_dependency "bundler", "~> 1.11"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "gemsmith", "~> 7.6"
-  spec.add_development_dependency "codeclimate-test-reporter"
+  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.require_paths = 'lib'
 
-  spec.files = Dir["lib/**/*", "vendor/**/*"]
-  spec.extra_rdoc_files = Dir["README*", "LICENSE*"]
-  spec.require_paths = ["lib"]
+  spec.required_ruby_version = '>= 2.1.10'
+
+  spec.add_dependency 'warden', '~> 1.2', '>= 1.2.6'
+
+  spec.add_development_dependency 'bundler', '~> 1.11', '>= 1.11.2'
+  spec.add_development_dependency 'rake', '~> 11.1', '>= 11.1.2'
+  spec.add_development_dependency 'minitest', '~> 5.8', '>= 5.8.4'
+  spec.add_development_dependency 'codeclimate-test-reporter', '~> 0.5.0'
 end
