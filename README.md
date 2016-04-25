@@ -1,11 +1,13 @@
 # martinet
 
-[![Gem Version](https://badge.fury.io/rb/martinet.svg)](http://badge.fury.io/rb/martinet)
-[![Code Climate GPA](https://codeclimate.com/github//martinet.svg)](https://codeclimate.com/github//martinet)
-[![Code Climate Coverage](https://codeclimate.com/github//martinet/coverage.svg)](https://codeclimate.com/github//martinet)
-[![Gemnasium Status](https://gemnasium.com//martinet.svg)](https://gemnasium.com//martinet)
-[![Travis CI Status](https://secure.travis-ci.org//martinet.svg)](https://travis-ci.org//martinet)
-[![Patreon](https://img.shields.io/badge/patreon-donate-brightgreen.svg)](https://www.patreon.com/)
+[![Gem Version](https://badge.fury.io/rb/martinet.svg)](https://badge.fury.io/rb/martinet)
+[![Gem](https://img.shields.io/gem/dt/martinet.svg?maxAge=2592000)](https://rubygems.org/gems/martinet)
+[![Build Status](https://travis-ci.org/TangRufus/martinet.svg?branch=master)](https://travis-ci.org/TangRufus/martinet)
+[![Dependency Status](https://gemnasium.com/badges/github.com/TangRufus/martinet.svg)](https://gemnasium.com/github.com/TangRufus/martinet)
+[![Code Climate](https://codeclimate.com/github/TangRufus/martinet/badges/gpa.svg)](https://codeclimate.com/github/TangRufus/martinet)
+[![Test Coverage](https://codeclimate.com/github/TangRufus/martinet/badges/coverage.svg)](https://codeclimate.com/github/TangRufus/martinet/coverage)
+[![GitHub issues](https://img.shields.io/github/issues/TangRufus/martinet.svg)](https://github.com/TangRufus/martinet/issues)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/TangRufus/martinet/master/LICENSE.txt)
 
 <!-- Tocer[start]: Auto-generated, don't remove. -->
 

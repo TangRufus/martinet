@@ -1,0 +1,12 @@
+:git_commit_prefixes:
+  - Add
+  - Added
+  - Update
+  - Updated
+  - Fix
+  - Fixed
+  - Remove
+  - Removed
+  - Refactor
+  - Refactored
+:git_tag_sign: true
