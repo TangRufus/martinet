@@ -19,6 +19,9 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.require_paths = 'lib'
 
+  spec.cert_chain  = ['certs/tangrufus.pem']
+  spec.signing_key = File.expand_path('~/.ssh/gem-private_key.pem')
+
   spec.required_ruby_version = '>= 2.1.10'
 
   spec.add_dependency 'warden', '~> 1.2', '>= 1.2.6'
