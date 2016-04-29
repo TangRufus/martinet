@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'martinet/version'
 require 'martinet/configuration'
 require 'martinet/session'
