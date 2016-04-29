@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 # TODO: Think of a way to test Impersonation when enable_impersonation on and off

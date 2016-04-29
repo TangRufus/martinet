@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Martinet
   module Impersonation
     def impersonate!(user, impersonator_scope: nil)

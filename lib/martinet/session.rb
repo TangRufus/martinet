@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Martinet
   # HTTP/Warden session-specific behavior.
   class Session
