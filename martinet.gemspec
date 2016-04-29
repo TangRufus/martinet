@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'warden', '~> 1.2', '>= 1.2.6'
 
-  spec.add_development_dependency 'bundler', '~> 1.11', '>= 1.11.2'
+  spec.add_development_dependency 'bundler', '~> 1.12'
   spec.add_development_dependency 'rake', '~> 11.1', '>= 11.1.2'
   spec.add_development_dependency 'minitest', '~> 5.8', '>= 5.8.4'
   spec.add_development_dependency 'codeclimate-test-reporter', '~> 0.5.0'
