@@ -10,6 +10,8 @@ before_install:
   - gem update --system
   - gem update bundler
   - gem cleanup bundler
+  - gem cert --add <(curl -Ls http://www.zenspider.com/~ryan/gem-public_cert.pem)
+  - gem cert --add certs/tangrufus.pem
 
 bundler_args: --without tools --trust-policy=MediumSecurity --jobs=3 --retry=3
 
