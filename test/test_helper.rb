@@ -6,7 +6,10 @@ CodeClimate::TestReporter.start
 
 require 'martinet'
 require 'minitest/autorun'
+require 'minitest/reporters'
 require 'warden'
+
+Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new]
 
 module MiniTest
   class Spec
