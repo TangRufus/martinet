@@ -33,5 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest', '~> 5.8', '>= 5.8.4'
   spec.add_development_dependency 'minitest-reporters', '~> 1.1', '>= 1.1.9'
   spec.add_development_dependency 'codeclimate-test-reporter', '~> 0.5.0'
-  spec.add_development_dependency 'rubocop', '~> 0.39.0'
+  spec.add_development_dependency 'rubocop', '~> 0.40.0'
 end
