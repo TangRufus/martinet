@@ -1,3 +1,7 @@
+sudo: false
+
+cache: bundler
+
 language: ruby
 
 rvm:
@@ -5,20 +9,19 @@ rvm:
   - 2.3.3
   - 2.2.6
 
-before_install:
-  - gem update --system
-  - gem update bundler
-  - gem cleanup bundler
-
 bundler_args: --without tools --jobs=3 --retry=3
 
-branches:
-  only:
-    - master
+script:
+  - bundle exec rake test
+  - bundle exec rubocop
 
-sudo: false
-
-cache: bundler
+after_success:
+  - bundle exec codeclimate-test-reporter
 
 notifications:
   email: false
+
+# MAYBE: Use ENV var or encrypted token?
+# addons:
+#   code_climate:
+#     repo_token: <token>
